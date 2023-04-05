@@ -94,6 +94,19 @@ public class Week3 {
 		return right;
 	}
 
+	private int parition2(int[] data, int p, int r) { // 더 간단한 코드
+		int x = data[r];
+		int k = p - 1;
+
+		for (int i = p; i < 1; i++) {
+			if (data[i] <= x) {
+				swap(data, ++k, i); // ++k : 바꿀 때 증가시켜서 바꿔라
+			}
+		}
+		swap(data, k + 1, r);
+		return k + 1;
+	}
+
 	public int[] mergeSort(int[] data) {
 		return mergeSort(data, 0, data.length - 1);
 	}

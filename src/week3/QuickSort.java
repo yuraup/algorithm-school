@@ -30,14 +30,14 @@ public class QuickSort {
 		int left = s;
 		int right = e;
 
-		while (left < right) {
+		while (left < right) { // 같아지면 전진하면 안 됨
 			while (data[left] < data[pivot] && left < right) {
 				left++;
 			}
 			while (data[right] >= data[pivot] && left < right) {
 				right--;
 			}
-			if (left < right) {
+			if (left < right) { // 작은데 빠져나온 거면 바꿔라
 				swap(data, left, right);
 			}
 		}
