@@ -1,7 +1,10 @@
 package week2;
 
 public class Maze {
-	int count;
+	//문제 : M x N maze에서 경로상 숫자들을 합할 때 최대값 구하기
+	//규칙 :오른쪽 혹은 아래로만 이동 가능
+	
+	static int count = 0;
 
 	public int max(int[][] d, int i, int j) {
 		count++;
@@ -39,12 +42,12 @@ public class Maze {
 	public static void main(String[] args) {
 		int[][] data = { { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 },
 				{ 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 } };
+		
+		Maze m = new Maze();
+		int i = 6;
+		int j = 6;
+		System.out.println(m.max(data, i , j));
+		System.out.println("최댓값:" + m.max2(data, i , j) + "count:" + count);
+		
 	}
-
-	Maze m = new Maze();
-	int i = 6;
-	int j = 6;
-//	System.out.println(m.max(d, i , j));
-//	System.out.println(m.max2(d, i , j));
-
 }

@@ -1,158 +1,158 @@
 package week5;
 
 public class MyArrayList1 {
-	// free from Max Size of Array!
-	// ¿ë·® ´Ã¸° ¹öÀüÀ¸·Î ±¸ÇöÇÏ±â
-
-	int maxSize = 20;
-	int[] array;
-	int currentSize; //
-
-	public MyArrayList1() {
-		array = new int[maxSize];
-		currentSize = 0;
-	}
-
-	private boolean isFull() { // ¸Þ¸ð¸® °ø°£ ¿©ºÎ
-		if (currentSize == maxSize) { // ÇöÀç »çÀÌÁî Ã¼Å©
-			return true;
-		} else
-			return false;
-	}
-
-	public boolean isEmpty() { // ¸Þ¸ð¸® °ø°£ ¿©ºÎ
-		if (currentSize == 0) { // ÇöÀç »çÀÌÁî Ã¼Å©
-			return true;
-		} else
-			return false;
-	}
-
-	private void enlarge(int value) {
-		if (isFull()) { // ÇöÀç »çÀÌÁî Ã¼Å©
-			// enlarge Array Size! »çÀÌÁî Å©°Ô ¸¸µéÀÚ
-			// 1. newArray of size maxSize*2
-			// 2. copy current data to newArray
-			// 3. array = newArray
-			// 4. maxSize *= 2
-		}
-	}
-
-	public void addLast(int value) { // ¼÷Á¦ - ¸Þ¸ð¸®¸¦ ´Ã·ÁÁÖ´Â ¸Þ¼Òµå¸¦ ¸¸µéÀÚ - À§¿¡ ÀÖÀ½
-		if (isFull()) { // ÇöÀç »çÀÌÁî Ã¼Å©
-			// enlarge Array Size! »çÀÌÁî Å©°Ô ¸¸µéÀÚ
-			// 1. newArray of size maxSize*2
-			// 2. copy current data to newArray
-			// 3. array = newArray
-			// 4. maxSize *= 2
-
-		} else {
-			array[currentSize++] = value;
-		}
-	}
-
-	public void addFirst(int value) { // ÀÖ´Â °Å ÀüºÎ ´Ù ¹Ð¾î³»¾ß ÇÔ
-		if (isFull()) { // ÇöÀç »çÀÌÁî Ã¼Å©
-			System.out.println("Memory full!");
-		} else { // »çÀÌÁî°¡ °¡´ÉÇÏ´Ù¸é ÇÏ³ª¾¿ ¹Ð±â
-			for (int i = currentSize; i > 0; i--)
-				array[i] = array[i - 1];
-			array[0] = value;
-
-		}
-	}
-
-	public void add(int index, int value) { // ¼÷Á¦
-
-	}
-
-	public int removeLast() { // ¸ÇµÚ »èÁ¦
-		if (isEmpty()) {
-			System.out.println("List Empty");
-		} else {
-			int returnValue = array[currentSize - 1];
-			currentSize--;
-			return returnValue;
-//			return array[--currentSize]; À§ ¼¼ ÁÙÀ» ÁÙ¿©¼­ ¾´ °Í
-		}
-	}
-
-	public int removeFirst(int index) { // ¸Ç¾Õ »èÁ¦ -> µÞ ¿ä¼Òµé ¶¯°Ü¿À±â (¼÷Á¦)
-
-	}
-
-	public int removeKey(int value) { // ¼÷Á¦ : ÁÙÀÎ °Å µÚºÎÅÍ ÁÙ¿©¶ó
-		int index = indexOf(value);
-		if (index == -1) {
-			System.out.println("Not Found!");
-		}
-
-	}
-
-	public int remove(int index) { // (¼÷Á¦)
-
-	}
-
-	public int size() {
-		return currentSize;
-	}
-
-	public int get(int index) { //
-		// »ç¿ëÀÚ°¡ ÀÎµ¦½º¿¡ ¾ø´Â °ªÀ» ÁØ´Ù¸é? : indexOutOfBound Ã¼Å©
-		if (index < 0 || index >= currentSize) { // µû·Î ¸Þ¼Òµå·Î ¶¼¾î³¾ ¼ö ÀÖÀ½
-			System.out.println("Wrong Index!");
-			return -9999; // not found ¶ó°í Á¤ÀÇÇÔ
-		} else
-			return array[index];
-	}
-
-	public int set(int index, int value) { // (¼÷Á¦): Æ¯Á¤ i¹øÂ° °ªÀ» º¯°æ
-		// ¿©±â¿¡ indexOutOfBound ¹æÁöÇÏ±â ÄÚµå ³Ö´Â °Ô ¼÷Á¦ , À§¿¡ ÀÕÀ½
-		array[index] = value;
-		return array[index];
-	}
-
-	private int indexOf(int value) { // ¼­Ä¡ - sorting ¾È µÇ¾î ÀÖÀ½
-		for (int i = 0; i < currentSize; i++) {
-			if (array[i] == value) {
-				return i;
-			}
-		}
-		return -1; // ¿øÇÏ´Â °ªÀÌ ¾ø´Ù. null == -1
-	}
-
-	public static void main(String[] args) {
-		int[] data = new int[10];
-
-		for (int i = 0; i <= 10; i++) {
-			data[i] = (int) Math.random() * 10; // 10°³ÀÇ ·£´ý µ¥ÀÌÅÍ ¸¸µé±â
-
-		}
-		MyArrayList list = new MyArrayList(); // ¸Þ¸ð¸® ÇÒ´ç ½ÃÀÛ
-	}
-
-	for(
-
-	int i = 0;i<10;i++)
-	{
-		list.addLast(array[i]);
-	}
-
-	list.addFirst(300);
-
-	list.add(5,400);
-
-	int index = list.indexOf(400);
-
-	list.set(index,450);
-
-	list.get(index); // 450À¸·Î °íÃÄÁ³´ÂÁö È®ÀÎ
-
-	list.size();
-
-	list.remove(3); // index = 3
-	list.removeKey(450); // key Value = 450
-
-	list.removeFirst();list.removeLast();
-}
+//	// free from Max Size of Array!
+//	// ï¿½ë·® ï¿½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+//
+//	int maxSize = 20;
+//	int[] array;
+//	int currentSize; //
+//
+//	public MyArrayList1() {
+//		array = new int[maxSize];
+//		currentSize = 0;
+//	}
+//
+//	private boolean isFull() { // ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		if (currentSize == maxSize) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+//			return true;
+//		} else
+//			return false;
+//	}
+//
+//	public boolean isEmpty() { // ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		if (currentSize == 0) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+//			return true;
+//		} else
+//			return false;
+//	}
+//
+//	private void enlarge(int value) {
+//		if (isFull()) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+//			// enlarge Array Size! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//			// 1. newArray of size maxSize*2
+//			// 2. copy current data to newArray
+//			// 3. array = newArray
+//			// 4. maxSize *= 2
+//		}
+//	}
+//
+//	public void addLast(int value) { // ï¿½ï¿½ï¿½ï¿½ - ï¿½Þ¸ð¸®¸ï¿½ ï¿½Ã·ï¿½ï¿½Ö´ï¿½ ï¿½Þ¼Òµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		if (isFull()) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+//			// enlarge Array Size! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//			// 1. newArray of size maxSize*2
+//			// 2. copy current data to newArray
+//			// 3. array = newArray
+//			// 4. maxSize *= 2
+//
+//		} else {
+//			array[currentSize++] = value;
+//		}
+//	}
+//
+//	public void addFirst(int value) { // ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ð¾î³»ï¿½ï¿½ ï¿½ï¿½
+//		if (isFull()) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+//			System.out.println("Memory full!");
+//		} else { // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Ù¸ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
+//			for (int i = currentSize; i > 0; i--)
+//				array[i] = array[i - 1];
+//			array[0] = value;
+//
+//		}
+//	}
+//
+//	public void add(int index, int value) { // ï¿½ï¿½ï¿½ï¿½
+//
+//	}
+//
+//	public int removeLast() { // ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+//		if (isEmpty()) {
+//			System.out.println("List Empty");
+//		} else {
+//			int returnValue = array[currentSize - 1];
+//			currentSize--;
+//			return returnValue;
+////			return array[--currentSize]; ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+//		}
+//	}
+//
+//	public int removeFirst(int index) { // ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ ï¿½ï¿½Òµï¿½ ï¿½ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
+//
+//	}
+//
+//	public int removeKey(int value) { // ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Úºï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½
+//		int index = indexOf(value);
+//		if (index == -1) {
+//			System.out.println("Not Found!");
+//		}
+//
+//	}
+//
+//	public int remove(int index) { // (ï¿½ï¿½ï¿½ï¿½)
+//
+//	}
+//
+//	public int size() {
+//		return currentSize;
+//	}
+//
+//	public int get(int index) { //
+//		// ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´Ù¸ï¿½? : indexOutOfBound Ã¼Å©
+//		if (index < 0 || index >= currentSize) { // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ï¿½ ï¿½ï¿½ï¿½î³¾ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//			System.out.println("Wrong Index!");
+//			return -9999; // not found ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//		} else
+//			return array[index];
+//	}
+//
+//	public int set(int index, int value) { // (ï¿½ï¿½ï¿½ï¿½): Æ¯ï¿½ï¿½ iï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		// ï¿½ï¿½ï¿½â¿¡ indexOutOfBound ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½Úµï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		array[index] = value;
+//		return array[index];
+//	}
+//
+//	private int indexOf(int value) { // ï¿½ï¿½Ä¡ - sorting ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		for (int i = 0; i < currentSize; i++) {
+//			if (array[i] == value) {
+//				return i;
+//			}
+//		}
+//		return -1; // ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. null == -1
+//	}
+//
+//	public static void main(String[] args) {
+//		int[] data = new int[10];
+//
+//		for (int i = 0; i <= 10; i++) {
+//			data[i] = (int) Math.random() * 10; // 10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+//
+//		}
+//		MyArrayList list = new MyArrayList(); // ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½ ï¿½ï¿½ï¿½ï¿½
+//	}
+//
+//	for(
+//
+//	int i = 0;i<10;i++)
+//	{
+//		list.addLast(array[i]);
+//	}
+//
+//	list.addFirst(300);
+//
+//	list.add(5,400);
+//
+//	int index = list.indexOf(400);
+//
+//	list.set(index,450);
+//
+//	list.get(index); // 450ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+//
+//	list.size();
+//
+//	list.remove(3); // index = 3
+//	list.removeKey(450); // key Value = 450
+//
+//	list.removeFirst();list.removeLast();
+//}
 
 }

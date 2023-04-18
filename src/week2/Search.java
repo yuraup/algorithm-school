@@ -1,33 +1,32 @@
 package week2;
 
-//¹®Á¦: Á¤ÇØÁø Å©±âÀÇ array¿¡¼­ x¸¦ Ã£¾Æ¶ó. 
+//ë¬¸ì œ: ì •í•´ì§„ í¬ê¸°ì˜ arrayì—ì„œ xë¥¼ ì°¾ì•„ë¼. 
 public class Search {
 	int count = 0;
 
 	public void setCount() {
-		count = 0; // ÃÊ±âÈ­
+		count = 0; // ì´ˆê¸°í™”
 
 	}
 
-	public int getCount() { // ¾ó¸¶¸¸¿¡ Ã£¾Ò´ÂÁö ¼¼±â À§ÇÑ ÇÔ¼ö
+	public int getCount() { // ì–¼ë§ˆë§Œì— ì°¾ì•˜ëŠ”ì§€ ì„¸ê¸° ìœ„í•œ í•¨ìˆ˜
 		return count;
 	}
 
-	public int search1(int[] data, int x) { // ¹ÙÅÒ ¾÷ ±¸Á¶
+	public int search1(int[] data, int x) { // ë°”í…€ ì—… êµ¬ì¡°
 		for (int i = 0; i < data.length; i++) {
 			count++;
 			if (x == data[i]) {
 				return i;
 			}
 		}
-		return -1; // ¾ø´Ù. == -1
-
+		return -1; // ì—†ë‹¤. == -1
 	}
 
-	public int search2(int[] data, int x, int n) { // Å¾ ´Ù¿î
+	public int search2(int[] data, int x, int n) { // íƒ‘ ë‹¤ìš´
 		count++;
 
-		if (n < 0) { // ¾øÀ» ¶§ ¿¹¿Ü Ã³¸®
+		if (n < 0) { // ì—†ì„ ë•Œ ì˜ˆì™¸ ì²˜ë¦¬
 			return -1;
 		}
 		if (x == data[n]) {
@@ -38,12 +37,12 @@ public class Search {
 
 	}
 
-	// int start, end; // º¯¼ö°¡ ¿©±â¿¡ ÀÖÀ¸¸é... ¹Ù²ğ °¡´É¼ºÀÌ ÀÖ±â ¶§¹®¿¡ ¾È µÊ
+	// int start, end; // ë³€ìˆ˜ê°€ ì—¬ê¸°ì— ìˆìœ¼ë©´... ë°”ë€” ê°€ëŠ¥ì„±ì´ ìˆê¸° ë•Œë¬¸ì— ì•ˆ ë¨
 	public int search3(int[] data, int x, int start, int end) {
 		count++;
 
 		if (end - start < 0) {
-			return -1; // ¸ø Ã£¾Ò´Ù
+			return -1; // ëª» ì°¾ì•˜ë‹¤
 		}
 		int middle = (start + end) / 2;
 
@@ -58,7 +57,6 @@ public class Search {
 
 	public static void main(String[] args) {
 		int[] data = { 1, 3, 4, 6, 7, 10, 12, 17, 21, 23, 25, 30, 33, 37 };
-
 		Search s = new Search();
 
 		int x = 17;
