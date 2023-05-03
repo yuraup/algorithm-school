@@ -1,16 +1,17 @@
 package week2;
 
 public class Maze {
-	//문제 : M x N maze에서 경로상 숫자들을 합할 때 최대값 구하기
-	//규칙 :오른쪽 혹은 아래로만 이동 가능
-	
+	// 문제 : M x N maze에서 경로상 숫자들을 합할 때 최대값 구하기
+	// 규칙 :오른쪽 혹은 아래로만 이동 가능
+
 	static int count = 0;
 
+	// 이차원 배열 iterator
 	public int max(int[][] d, int i, int j) {
 		count++;
-		int n = d.length;
+		int n = d.length; // 행이 몇 개
 		int[][] r = new int[n][n];
-		r[0][0] = d[0][0];
+		r[0][0] = d[0][0]; // r = array () / d = data (주어진 거)
 		for (int k = 1; k < n; k++) {
 			r[0][k] = d[0][k] + r[0][k - 1];
 		}
@@ -23,10 +24,9 @@ public class Maze {
 			}
 		}
 		return r[i][j];
-
 	}
 
-	public int max2(int[][] d, int i, int j) {
+	public int max2(int[][] d, int i, int j) { // recursion
 		count++;
 		if (i == 0 && j == 0) {
 			return d[i][j];
@@ -35,19 +35,19 @@ public class Maze {
 		} else if (j == 0) {
 			return d[i][j] + max2(d, i - 1, j);
 		} else
-			return d[i][j] + Math.max(max2(d, i - 1, j), max(d, i, j - 1));
-
+			return d[i][j] + Math.max(max2(d, i - 1, j), max2(d, i, j - 1));
 	}
 
 	public static void main(String[] args) {
 		int[][] data = { { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 },
 				{ 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 }, { 1, 2, 3, 4, 5, 6, 7 } };
-		
+
 		Maze m = new Maze();
 		int i = 6;
 		int j = 6;
-		System.out.println(m.max(data, i , j));
-		System.out.println("최댓값:" + m.max2(data, i , j) + "count:" + count);
-		
+		System.out.println("data 만들기 ");
+		System.out.println(m.max(data, i, j));
+		System.out.println("최댓값:" + m.max2(data, i, j) + "count:" + count);
+
 	}
 }
