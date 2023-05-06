@@ -1,11 +1,8 @@
-package week6;
-
-import java.util.ArrayList;
+package week9;
 
 public class SimpleTree {
 	//노드는 일반사용자에게 오픈 X 
-	ArrayList<Character> array;
-	
+	char [] array;
 	class Node {
 		char data;
 		Node leftChild; 
@@ -29,9 +26,10 @@ public class SimpleTree {
 	}
 	
 	Node root; //맨 위에 있는 root 노드 
+
 	SimpleTree () {
-		array = new ArrayList<>(); 
 		root = null;
+		array = new char[10];
 	}
 //	
 //	public Node mainTree(char ch) { //char 받아옴 
@@ -68,22 +66,24 @@ public class SimpleTree {
 		}
 		
 	}
-
+	//*1+1의 관계가 유지되려면 시작이 1이어야 함. 0 안 돼 
 	public void toArray() {
-		array.add('s');
-		toArray(root, 1); //*1+1의 관계가 유지되려면 시작이 1이어야 함. 0 안 돼 
 		
-		//recursion 돌아옴 
-		System.out.println(array);
+		toArray(root, 1);
+		
+		System.out.println();
+		for (int i=1;i<=7;i++)
+			System.out.print("["+i+"]"+array[i]+" ");
 	}
-	
-	private void toArray(Node p, int index) { //숙제 : 돌아가게 만들기 
-		if (p != null) { 
-			array.add(index, p.data);
+
+	private void toArray(Node p, int index) {
+		if (p != null) {
+			array[index]= p.data;
 			toArray(p.leftChild, index*2);
 			toArray(p.rightChild, index*2+1);
-		}
+		}		
 	}
+
 	
 	public static void main(String[] args) {
 		//a*b-c/d ??? 안 보여 ㅠ
