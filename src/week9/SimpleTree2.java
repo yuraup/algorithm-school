@@ -1,92 +1,101 @@
 package week9;
 
 public class SimpleTree2 {
-    class Node {
-        char data;
-        Node leftChild;
-        Node rightChild;
+	char[] array;
 
-        Node(char d) {
-            data = d;
-            leftChild = null;
-            rightChild = null;
-        }
+	class Node {
+		char data;
+		Node leftChild;
+		Node rightChild;
+		Node parent;
 
-        Node(Node lc, char d, Node rc) {
-            data = d;
-            leftChild = lc;
-            rightChild = rc;
-        }
+		Node(char d) {
+			data = d;
+			leftChild = null;
+			rightChild = null;
+			parent = null;
+		}
 
-        public String toString() {
-            return "" + data;
-        }
-    }
+		Node(Node lc, char d, Node rc) {
+			data = d;
+			leftChild = lc;
+			rightChild = rc;
+			parent = null;
+			if (lc != null)
+				lc.parent = this; // 왼쪽 자식 노드의 부모
+			if (rc != null)
+				rc.parent = this; // 오른쪽 자식 노드의 부모
+		}
 
-    Node root;
-    int nodeCount;
+		public String toString() {
+			return "" + data;
+		}
+	}
 
-    SimpleTree2() {
-        root = null;
-        nodeCount = 0;
-    }
+	Node root;
 
-    public Node insert(Node node, char ch) { //새로운 노드 삽입 
-        if (node == null) {
-            node = new Node(ch);
-            nodeCount++;
-        } else {
-            if (ch < node.data) {
-                node.leftChild = insert(node.leftChild, ch);
-            } else {
-                node.rightChild = insert(node.rightChild, ch);
-            }
-        }
-        return node;
-    }
+	SimpleTree2() {
+		root = null;
+		array = new char[10];
+	}
 
-    public void inorderTraversal(Node node) {
-        if (node != null) {
-            inorderTraversal(node.leftChild);
-            System.out.print(node.data + " ");
-            inorderTraversal(node.rightChild);
-        }
-    }
+	public Node makeTree(char ch) {
+		root = new Node(ch);
+		return root;
+	}
 
-    public void showTree() {
-        inorderTraversal(root);
-    }
+	public Node makeTree(SimpleTree2 leftSubTree, char ch, SimpleTree2 rightSubTree) {
+		root = new Node(leftSubTree.root, ch, rightSubTree.root);
+		return root;
+	}
 
-    public void toArray() { 
-        char[] array = new char[nodeCount *2 + 2]; // 배열 크기를 트리의 노드 수에 맞게 설정
+	public void showTree() {
+		showTree(root);
+	}
 
-        toArray(root, 1, array);
+	private void showTree(Node node) {
+		if (node != null) {
+			showTree(node.leftChild);
+			System.out.print(node.data);
+			showTree(node.rightChild);
+		}
+	}
 
-        System.out.println();
-        for (int i = 1; i < array.length; i++) {
-            System.out.print("[" + i + "]" + array[i] + " ");
-        }
-    }
+	public void toArray() {
+		toArray(root, 1);
+		System.out.println();
+		for (int i = 1; i <= 7; i++)
+			System.out.print("[" + i + "]" + array[i] + " ");
+	}
 
-    private void toArray(Node node, int index, char[] array) {
-        if (node != null) {
-            array[index] = node.data;
-            toArray(node.leftChild, index * 2, array);
-            toArray(node.rightChild, index * 2 + 1, array);
-        }
-    }
+	private void toArray(Node node, int index) {
+		if (node != null) {
+			array[index] = node.data;
+			toArray(node.leftChild, index * 2);
+			toArray(node.rightChild, index * 2 + 1);
+		}
+	}
 
-    public static void main(String[] args) {
-        SimpleTree2 tree = new SimpleTree2();
-        tree.root = tree.insert(tree.root, 'a');
-        tree.root = tree.insert(tree.root, 'b');
-        tree.root = tree.insert(tree.root, 'c');
-        tree.root = tree.insert(tree.root, 'd');
-        tree.root = tree.insert(tree.root, '+');
-        tree.root = tree.insert(tree.root, '%');
-        tree.root = tree.insert(tree.root, '+');
+	public static void main(String[] args) {
+		SimpleTree2 t1 = new SimpleTree2();
+		t1.makeTree('a');
+		SimpleTree2 t2 = new SimpleTree2();
+		t2.makeTree('b');
+		SimpleTree2 t3 = new SimpleTree2();
+		t3.makeTree('c');
+		SimpleTree2 t4 = new SimpleTree2();
+		t4.makeTree('d');
 
-        tree.showTree();
-        tree.toArray();
-    }
+		SimpleTree2 t5 = new SimpleTree2();
+		t5.makeTree(t1, '+', t2);
+
+		SimpleTree2 t6 = new SimpleTree2();
+		t6.makeTree(t3, '%', t4);
+
+		SimpleTree2 t7 = new SimpleTree2();
+		t7.makeTree(t5, '+', t6);
+
+		t7.showTree();
+		t7.toArray();
+	}
 }
